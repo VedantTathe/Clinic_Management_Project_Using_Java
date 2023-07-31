@@ -526,8 +526,8 @@ txt_name.setText("");
 
 		//searh code
 
-		if(list_name.getSelectedIndex() != -1)
-		{
+		// if(list_name.getSelectedIndex() != -1)
+		// {
 				String value = txt_search_name.getText().trim().toUpperCase();
 				try{
 					connect();
@@ -575,10 +575,10 @@ txt_name.setText("");
 				}
 				catch(Exception ex)
 				{
-				JOptionPane.showMessageDialog(this, "SEARCH CODE: "+ex);
+				// JOptionPane.showMessageDialog(this, "SEARCH CODE: "+ex);
 				}
 
-			}
+			// }
 
 
 	}

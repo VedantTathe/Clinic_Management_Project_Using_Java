@@ -187,7 +187,7 @@ class HistoryFrame extends JFrame implements ActionListener, ListSelectionListen
 			fin.close();
 		}catch(Exception ex)
 		{
-			JOptionPane.showMessageDialog(this, ex);
+			// JOptionPane.showMessageDialog(this, ex);
 		}
 	}
 
@@ -206,10 +206,18 @@ class HistoryFrame extends JFrame implements ActionListener, ListSelectionListen
 
 				FileOutputStream fout = new FileOutputStream(f);
 
+				java.util.Date mydate  = new java.util.Date();
+				String x = "\n-----------------------------\n"+mydate+"\n-----------------------------\n";
+			
+
 				String mytext = txt_area_2.getText();
+				mytext = mytext + x;
 				mytext = mytext + txt_area_1.getText();
 
+				java.util.Date date = new java.util.Date();
+
 				byte arr[] = mytext.getBytes();
+				
 				fout.write(arr);
 
 				JOptionPane.showMessageDialog(this, "path "+"D:/MyDatabase/"+txt_pmno.getText()+".txt");
