@@ -83,6 +83,14 @@ class MainFrame extends JFrame implements ActionListener, ListSelectionListener
 
 		this.setLayout(null);
 
+		JPanel p1 = new JPanel();
+		this.add(p1);
+		p1.setBounds(100, 50, 1050, 100);
+
+		JLabel lbl = new JLabel("WELCOME AKSHAY MAHORE...!");
+		lbl.setFont(new Font("calibri", Font.BOLD, 30));
+		p1.add(lbl);
+
 		JPanel p = new JPanel();
 		p.setBounds(250, 150, 800, 300);
 

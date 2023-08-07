@@ -14,7 +14,7 @@ class MyClinic
 
 	public static void main(String[] args)
 	{
-		// new LoginFrame();
-		new MainFrame();
+		new LoginFrame();
+		// new MainFrame();
 	}
 }

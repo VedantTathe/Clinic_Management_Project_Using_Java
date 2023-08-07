@@ -57,11 +57,12 @@ class LoginFrame extends JFrame implements ActionListener
 
 		b.setBounds(200,160,100,25);
 
-		this.pack();
+		// this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setSize(400,250);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setResizable(false);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e)

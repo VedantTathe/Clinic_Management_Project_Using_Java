@@ -308,7 +308,7 @@ class HistoryFrame extends JFrame implements ActionListener, ListSelectionListen
 		txt_pmno.setVisible(false);
 
 		txt_pname.setEditable(false);
-		txt_pname.setText(MyClinic.PName+" "+MyClinic.PMno);
+		txt_pname.setText(MyClinic.PName);
 		txt_pmno.setText(MyClinic.PMno);
 
 
@@ -406,6 +406,7 @@ class HistoryFrame extends JFrame implements ActionListener, ListSelectionListen
 		txt_area_2 = new JTextArea();
 		// txt_area_2.setEditable(false);
 		txt_area_2.setFont(new Font("calibri", Font.PLAIN, 16));
+		txt_area_2.setEditable(false);
 		sp = new JScrollPane(txt_area_2);
 		right_p5.add(sp);
 		sp.setBounds(20,30,330,400);
@@ -420,10 +421,11 @@ class HistoryFrame extends JFrame implements ActionListener, ListSelectionListen
 
 	public void getFileData()
 	{
+		File f = null;	
 		try
 		{
 			// File f = new File("D:/MyDatabase/"+txt_pmno.getText()+".txt");
-			File f = new File("D:/MyDatabase/"+txt_pmno.getText()+".txt");
+			f = new File("D:/MyDatabase/"+txt_pmno.getText()+".txt");
 			FileInputStream fin = new FileInputStream(f);
 
 			String mytext = "";
@@ -445,7 +447,15 @@ class HistoryFrame extends JFrame implements ActionListener, ListSelectionListen
 			fin.close();
 		}catch(Exception ex)
 		{
-			JOptionPane.showMessageDialog(this, ex);
+			try{
+			// JOptionPane.showMessageDialog(this, ex);
+				FileOutputStream fout = new FileOutputStream(f);
+				fout.close();
+			}catch(Exception ex1)
+			{
+			JOptionPane.showMessageDialog(this, ex1);
+
+			}
 		}
 	}
 
@@ -487,6 +497,8 @@ class HistoryFrame extends JFrame implements ActionListener, ListSelectionListen
 
 
 				fout.close();
+
+				txt_area_1.setText("");
 			}catch(Exception ex)
 			{
 				JOptionPane.showMessageDialog(this, ex);

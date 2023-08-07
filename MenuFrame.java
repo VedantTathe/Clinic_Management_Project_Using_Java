@@ -6,6 +6,7 @@ import java.sql.*;
 import java.text.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
+import java.util.regex.*;
 
 class MenuFrame extends JFrame implements ActionListener, ListSelectionListener
 {
@@ -307,18 +308,24 @@ menu_p3.setLayout(null);
 		{
 			case "ADD": 
 				if(true){
+
+					Pattern LetterPattern = Pattern.compile("[a-zA-Z]+$");
+					Pattern NumberPattern = Pattern.compile("[1-9]+$");
+
+					String err_text = "";
+					
 					String pname = txt_name.getText().trim().toUpperCase();
 					String pmno = txt_mno.getText().trim();
 					String preg = txt_reg.getText().trim().toUpperCase();
-					String err_text = "";
+					
 
-					if(pname.length()==0)
+					if(!(LetterPattern.matcher(txt_name.getText()).matches()) || txt_name.getText().equals(""))
 					{
-						err_text = err_text+"Name Not Provided";
+						err_text = err_text+"Enter valid name\n";
 					}
-					if(pmno.length()==0)
+					if(txt_mno.getText().equals(""))
 					{
-						err_text = err_text+"Mobile No. Not Provided";
+						err_text = err_text+"Enter valid Mobile no\n";
 					}
 					if(preg.length()==0)
 					{
@@ -365,7 +372,7 @@ menu_p3.setLayout(null);
 					}
 					else
 						JOptionPane.showMessageDialog(this, err_text);
-txt_name.setText("");
+				txt_name.setText("");
 				txt_mno.setText("");
 				txt_reg.setText("");
 				txt_search_name.setText("");
