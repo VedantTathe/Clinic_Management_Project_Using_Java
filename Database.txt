@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 use MyClinic;
 create database MyClinic;
 create table patients
@@ -12,4 +13,20 @@ create table patients
 
 drop table patients;
 
+=======
+use MyClinic;
+create database MyClinic;
+create table patients
+(
+    id int auto_increment,
+    date varchar(20) not null,
+    pname varchar(50) not null,
+    pmno varchar(10) unique not null,
+    preg varchar(15) unique not null,
+    primary key (id)
+);
+
+drop table patients;
+
+>>>>>>> 215e852dbe032c46ae537157024451a9067fae4e
 select * from patients;
