@@ -29,13 +29,15 @@ class MenuFrame extends JFrame implements ActionListener, ListSelectionListener
 	private Vector <Vector> rows_data;
 	private Vector <String> col_data;
 	private JTextField txt_h_name, txt_h_mno;
+	private int sel_ind = -1;
 
 	public MenuFrame()
 	{
 
+
+		
+
 		//menu_panel
-
-
 
 		main_menu_panel = new JPanel();
 		// main_menu_panel.setBackground(Color.YELLOW);
@@ -159,7 +161,7 @@ class MenuFrame extends JFrame implements ActionListener, ListSelectionListener
 		menu_panel.add(menu_p3);
 		// menu_p3.setBackground();
 		menu_p3.setBounds(15, 300, 750, 250);
-menu_p3.setLayout(null);
+		menu_p3.setLayout(null);
 
 		col_data = new Vector <String> ();
 		rows_data = new Vector <Vector> ();
@@ -304,13 +306,15 @@ menu_p3.setLayout(null);
 // 		String txt_reg = 0;
 // 		String err_text = "";
 
+
+
 		switch(text)
 		{
 			case "ADD": 
 				if(true){
 
-					Pattern LetterPattern = Pattern.compile("[a-zA-Z]+$");
-					Pattern NumberPattern = Pattern.compile("[1-9]+$");
+					Pattern LetterPattern = Pattern.compile("[a-z A-Z]+$");
+					Pattern NumberPattern = Pattern.compile("[7-9][0-9]{9}");
 
 					String err_text = "";
 					
@@ -321,11 +325,16 @@ menu_p3.setLayout(null);
 
 					if(!(LetterPattern.matcher(txt_name.getText()).matches()) || txt_name.getText().equals(""))
 					{
-						err_text = err_text+"Enter valid name\n";
+						err_text = err_text + "Please enter valid Name\n";
 					}
-					if(txt_mno.getText().equals(""))
+					// if(txt_mno.getText().equals(""))
+					// {
+					// 	err_text = err_text+"Enter valid Mobile no\n";
+					// }
+
+					if(!(NumberPattern.matcher(txt_mno.getText()).matches()) || txt_mno.getText().equals(""))
 					{
-						err_text = err_text+"Enter valid Mobile no\n";
+						err_text = err_text + "Please enter valid Mobile Number\n";	
 					}
 					if(preg.length()==0)
 					{
@@ -333,7 +342,7 @@ menu_p3.setLayout(null);
 					}
 
 					if(err_text.equals(""))
-					{
+					{ 
 
 						try
 						{
@@ -370,8 +379,10 @@ menu_p3.setLayout(null);
 							JOptionPane.showMessageDialog(this, "ADD SECTION: "+ex);
 						}
 					}
-					else
+					else{
 						JOptionPane.showMessageDialog(this, err_text);
+						break;
+					}
 				txt_name.setText("");
 				txt_mno.setText("");
 				txt_reg.setText("");
@@ -432,28 +443,42 @@ menu_p3.setLayout(null);
 				String pmno = txt_mno.getText().trim();
 				String preg = txt_reg.getText().trim().toUpperCase();
 				String err_text = "";
+				Pattern LetterPattern = Pattern.compile("[a-z A-Z]+$");
+					Pattern NumberPattern = Pattern.compile("[7-9][0-9]{9}");
 
-				if(pname.length()==0)
+
+				if(list_name.getSelectedIndex() == -1)
 				{
-					err_text = err_text+"Name Not Provided\n";
+					JOptionPane.showMessageDialog(this, "Please Select first from list..!");
+
+					break;
 				}
-				if(pmno.length()==0)
-				{
-					err_text = err_text+"Mobile No. Not Provided\n";
-				}
+	sel_ind= list_name.getSelectedIndex();		
+					if(!(LetterPattern.matcher(txt_name.getText()).matches()) || txt_name.getText().equals(""))
+					{
+						err_text = err_text + "Please enter valid Name\n";
+					}
+					// if(txt_mno.getText().equals(""))
+					// {
+					// 	err_text = err_text+"Enter valid Mobile no\n";
+					// }
+
+					if(!(NumberPattern.matcher(txt_mno.getText()).matches()) || txt_mno.getText().equals(""))
+					{
+						err_text = err_text + "Please enter valid Mobile Number\n";	
+					}
 				if(preg.length()==0)
 				{
 					err_text = err_text+"Register No. Not Provided\n";
 				}
-				if(list_name.getSelectedIndex() == -1)
-				{
-					err_text = err_text + "Please Select a Record to Update\n";
-				}
+				
 
 
 				if(!err_text.equals(""))
 				{
 					JOptionPane.showMessageDialog(this, err_text);
+					list_name.setSelectedIndex(sel_ind);
+					break;
 
 				}
 				else
@@ -480,10 +505,10 @@ menu_p3.setLayout(null);
 							ps.setString(4,old_mno);
 
 
-							System.out.println(pname);
-							System.out.println(pmno);
-							System.out.println(preg);
-							System.out.println(old_mno);
+							// System.out.println(pname);
+							// System.out.println(pmno);
+							// System.out.println(preg);
+							// System.out.println(old_mno);
 							int n = ps.executeUpdate();
 							ps.close();
 							con.close();
