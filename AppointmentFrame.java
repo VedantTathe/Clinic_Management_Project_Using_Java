@@ -200,6 +200,8 @@ lbl = new JLabel("LIST");
 			err_msg = err_msg + "Please enter valid Place\n";
 		}
 
+
+
 		try{
 			int myknown_err = Integer.parseInt(txt_age.getText().trim());
 		}
