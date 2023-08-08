@@ -1,0 +1,15 @@
+use MyClinic;
+create database MyClinic;
+create table patients
+(
+    id int auto_increment,
+    date varchar(20) not null,
+    pname varchar(50) not null,
+    pmno varchar(10) unique not null,
+    preg varchar(15) unique not null,
+    primary key (id)
+);
+
+drop table patients;
+
+select * from patients;
